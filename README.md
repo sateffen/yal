@@ -1,4 +1,4 @@
-# yal ![build status](https://codeship.com/projects/YOUR_PROJECT_UUID/status?branch=master)#
+# yal ![Codeship Status for sateffen/yal](https://codeship.com/projects/68299760-524c-0133-0800-3289b2b41ce8/status?branch=master)#
 
 yal is yet another (not needed) library. 
 
