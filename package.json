@@ -1,6 +1,6 @@
 {
   "name": "yal",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "yet another library",
   "main": "src/yal.js",
   "author": {
@@ -9,13 +9,15 @@
   },
   "license": "MIT",
   "readmeFilename": "README.md",
-  "keywords": [],
+  "keywords": [
+      "observable"
+  ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/sateffen/yal"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/sateffen/yal/issues"
   },
   "devDependencies": {
     "blanket": "~1.1.7",
