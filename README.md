@@ -1,6 +1,6 @@
-# yal #
+# yal ![build status](https://codeship.com/projects/YOUR_PROJECT_UUID/status?branch=master)#
 
-yal is yet another (not needed) library.
+yal is yet another (not needed) library. 
 
 ## What is yal exactly ##
 
@@ -30,9 +30,12 @@ I prevent you from using the code?
 Feel free to use yal in every project you like. If there are bugs, just report them back,
 so I can fix them for everyone, or you provide a pull request with a solution.
 
-The code is tested by unittests as encapsuled units as well as integration tested by some
-automated tests, so I think the quality should be good enougth for production code. But feel
-free to provide more tests to even cover edges, that I didn't thought of.
+The code is tested by unittests as encapsuled units executed by codeship, so I think the
+quality should be good enougth for production code. But feel free to provide more tests to
+even cover edges, that I didn't thought of.
+
+In future I plan on building some "integration tests", that test everything together, but
+I need some time for that.
 
 ## Where is the documentation? ##
 
