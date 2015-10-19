@@ -10,7 +10,6 @@ module.exports = function (y, debug) {
         return aPotentialSubscribable !== undefined &&
             aPotentialSubscribable !== null &&
             aPotentialSubscribable.__yalSubscribable__ === privateSubscribableKey &&
-            typeof aPotentialSubscribable.__yalSubscribable__ === 'boolean' &&
             typeof aPotentialSubscribable.subscribe === 'function' &&
             typeof aPotentialSubscribable.unsubscribe === 'function' &&
             typeof aPotentialSubscribable.valueHasMutated === 'function';
