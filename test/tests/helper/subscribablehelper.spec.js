@@ -39,7 +39,7 @@ describe('Subscribable helper', function () {
             
             fakeYal.extendWithSubscribable(aParam, aParam);
             
-            expect(fakeYal.isSubscribable(aParam)).to.equal(false);
+            expect(fakeYal.isSubscribable(aParam)).to.equal(true);
         });
     });
     
