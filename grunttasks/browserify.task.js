@@ -8,7 +8,8 @@ module.exports = function (grunt) {
         },
         build: {
             files: {
-                'dist/yal.js': ['./src/yal.js']
+                'dist/yal.js': ['./src/yal.js'],
+                'dist/yal.debug.js': ['./src/yaldebug.js']
             }
         }
     });
