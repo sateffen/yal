@@ -1,11 +1,11 @@
 'use strict';
 module.exports = function (y, debug) {
     var privateSubscribableKey = Math.random().toString(26);
-    
+
     if (debug) {
         y.privateSubscribableKey = privateSubscribableKey;
     }
-    
+
     y.isSubscribable = function (aPotentialSubscribable) {
         return aPotentialSubscribable !== undefined &&
             aPotentialSubscribable !== null &&
@@ -40,10 +40,10 @@ module.exports = function (y, debug) {
 
         aToExtend.valueHasMutated = function () {
             for (var i = 0, len = aScope.subscriptions.length; i < len; i++) {
-                aScope.subscriptions[i](aScope.lastestValue);
+                aScope.subscriptions[i](aScope.latestValue);
             }
         };
-        
+
         aToExtend.dispose = function () {
             for (var i = 0, len = aScope.dependencies.length; i < len; i++) {
                 aScope.dependencies[i].dispose();

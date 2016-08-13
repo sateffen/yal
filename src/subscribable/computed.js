@@ -6,7 +6,7 @@ module.exports = function (y, debug) {
         }
 
         var scope = {};
-        
+
         function computed() {
             if (arguments.length > 0) {
                 scope.setValue(arguments[0]);
@@ -20,7 +20,7 @@ module.exports = function (y, debug) {
             return scope.getValue();
         }
 
-        scope.lastestValue = undefined;
+        scope.latestValue = undefined;
         scope.calculateFunction = aCalculateFunction;
         scope.isDirty = false;
         scope.recalculateValue = function (aForceRecalculate) {
@@ -33,7 +33,7 @@ module.exports = function (y, debug) {
 
             y.setupDependencyDetection(computed, scope.recalculateValue);
 
-            scope.lastestValue = scope.calculateFunction();
+            scope.latestValue = scope.calculateFunction();
             computed.valueHasMutated();
 
             scope.dependencies = y.tierDownDependencyDetection(computed);
@@ -44,21 +44,21 @@ module.exports = function (y, debug) {
             throw new Error('yal computed: Can\'t write to computed');
         };
         scope.getValue = function () {
-            return scope.lastestValue;
+            return scope.latestValue;
         };
 
         y.extendWithSubscribable(computed, scope);
         y.extendWithExtender(computed, scope);
-        
+
         if (debug) {
             computed.__scope__ = scope;
         }
-        
+
         // init
         y.setupDependencyDetection(computed, scope.recalculateValue);
-        scope.lastestValue = scope.calculateFunction();
+        scope.latestValue = scope.calculateFunction();
         scope.dependencies = y.tierDownDependencyDetection(computed);
-        
+
         return computed;
     };
 };

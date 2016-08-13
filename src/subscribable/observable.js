@@ -2,7 +2,7 @@
 module.exports = function (y, debug) {
     y.observable = function (aInitialValue) {
         var scope = {};
-        
+
         function observable(aNewValue) {
             if (arguments.length > 0) {
                 scope.setValue(aNewValue);
@@ -12,16 +12,16 @@ module.exports = function (y, debug) {
             return scope.getValue();
         }
 
-        scope.lastestValue = aInitialValue;
+        scope.latestValue = aInitialValue;
         scope.setValue = function (aValue) {
-            scope.lastestValue = aValue;
+            scope.latestValue = aValue;
             observable.valueHasMutated();
         };
-        
+
         scope.getValue = function () {
-            return scope.lastestValue;
+            return scope.latestValue;
         };
-        
+
         if (debug) {
             observable.__scope__ = scope;
         }

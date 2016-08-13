@@ -6,7 +6,7 @@ var computedModule = require('../../../src/subscribable/computed.js');
 
 describe('Computed', function () {
     var fakeYal;
-    
+
     beforeEach(function resetFakeYalSpies() {
         fakeYal = {
             unpack: chai.spy(),
@@ -166,22 +166,22 @@ describe('Computed', function () {
             return counter++;
         });
         var computed = fakeYal.computed(calculateFunction);
-        
+
         // patch the scope with the "subscriptions" array, like the subscriptionshelper would do
         computed.__scope__.subscriptions = [];
         computed.valueHasMutated = function () { };
 
         expect(computed.__scope__.subscriptions.length).to.equal(0);
-        expect(computed.__scope__.lastestValue).to.equal(23);
+        expect(computed.__scope__.latestValue).to.equal(23);
         expect(calculateFunction).to.have.been.called.once();
 
         calculateFunction.reset();
-        
+
         // simulate call to "recalculateValue", like when it's called by a dependency
         computed.__scope__.recalculateValue();
 
         expect(computed.__scope__.isDirty).to.equal(true);
-        expect(computed.__scope__.lastestValue).to.equal(23);
+        expect(computed.__scope__.latestValue).to.equal(23);
         expect(calculateFunction).not.to.have.been.called();
     });
 
@@ -193,28 +193,28 @@ describe('Computed', function () {
             return counter++;
         });
         var computed = fakeYal.computed(calculateFunction);
-        
+
         // patch the scope with the "subscriptions" array, like the subscriptionshelper would do
         computed.__scope__.subscriptions = [];
         computed.valueHasMutated = function () { };
 
         expect(computed.__scope__.subscriptions.length).to.equal(0);
-        expect(computed.__scope__.lastestValue).to.equal(32);
+        expect(computed.__scope__.latestValue).to.equal(32);
         expect(calculateFunction).to.have.been.called.once();
 
         calculateFunction.reset();
-        
+
         // simulate call to "recalculateValue", like when it's called by a dependency
         computed.__scope__.recalculateValue();
 
         expect(computed.__scope__.isDirty).to.equal(true);
-        expect(computed.__scope__.lastestValue).to.equal(32);
+        expect(computed.__scope__.latestValue).to.equal(32);
         expect(calculateFunction).not.to.have.been.called();
-        
+
         // now call the computed and trigger the recalculation
         expect(computed()).to.equal(33);
         expect(computed.__scope__.isDirty).to.equal(false);
-        expect(computed.__scope__.lastestValue).to.equal(33);
+        expect(computed.__scope__.latestValue).to.equal(33);
         expect(calculateFunction).to.have.been.called.once();
     });
 
@@ -233,12 +233,12 @@ describe('Computed', function () {
 
         computed.__scope__.subscriptions.push(function () { });
         calculateFunction.reset();
-        
+
         // simulate call to "recalculateValue", like when it's called by a dependency
         computed.__scope__.recalculateValue();
 
         expect(computed.__scope__.isDirty).to.equal(false);
-        expect(computed.__scope__.lastestValue).to.equal(43);
+        expect(computed.__scope__.latestValue).to.equal(43);
         expect(calculateFunction).to.have.been.called();
     });
 
@@ -248,57 +248,57 @@ describe('Computed', function () {
 
             function tryToSetValue() {
                 var computed = fakeYal.computed(function () { });
-                
+
                 computed(aType);
             }
-            
+
             expect(tryToSetValue).to.throw(Error);
             expect(tryToSetValue).to.throw(/yal computed:/);
         });
     });
-    
+
     it('should call the dispose function when calling the recalculate function', function () {
         computedModule(fakeYal, true);
-        
+
         var computed = fakeYal.computed(function () { });
-        
+
         computed.valueHasMutated = chai.spy();
         computed.__scope__.subscriptions = [{}];
         computed.dispose = chai.spy(computed.dispose);
         expect(computed.dispose).not.to.have.been.called();
-        
+
         computed.__scope__.recalculateValue();
-        
+
         expect(computed.dispose).to.have.been.called.once();
     });
-    
+
     it('should call the dispose function when calling the recalculate function', function () {
         computedModule(fakeYal, true);
-        
+
         var computed = fakeYal.computed(function () { });
-        
+
         computed.valueHasMutated = chai.spy();
         computed.__scope__.subscriptions = [{}];
         computed.dispose = chai.spy(computed.dispose);
         fakeYal.setupDependencyDetection.reset();
         fakeYal.tierDownDependencyDetection.reset();
-        
+
         computed.__scope__.recalculateValue();
-        
+
         expect(fakeYal.setupDependencyDetection).to.have.been.called.once();
         expect(fakeYal.tierDownDependencyDetection).to.have.been.called.once();
     });
-    
+
     it('should call valueHasMutated after recalculating the value', function () {
         computedModule(fakeYal, true);
-        
+
         var computed = fakeYal.computed(function () { });
-        
+
         computed.valueHasMutated = chai.spy();
         computed.__scope__.subscriptions = [{}];
-        
+
         computed.__scope__.recalculateValue();
-        
+
         expect(computed.valueHasMutated).to.have.been.called.once();
     });
 });
