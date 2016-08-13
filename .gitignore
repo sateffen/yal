@@ -7,6 +7,7 @@ node_modules/
 # the test results should not get checked in
 test/results/
 
+dist/
 
 # gitignore and jshintrc has to get checked in, even if it starts with a point, it's not private
 !.gitignore
