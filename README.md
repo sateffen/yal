@@ -30,16 +30,14 @@ I prevent you from using the code?
 Feel free to use yal in every project you like. If there are bugs, just report them back,
 so I can fix them for everyone, or you provide a pull request with a solution.
 
-The code is tested by unittests as encapsuled units executed by codeship, so I think the
-quality should be good enougth for production code. But feel free to provide more tests to
-even cover edges, that I didn't thought of.
+There are unittests and some integration tests, even the test coverage has 100%, but like
+everything, it's not sure, that I've got all edge cases covered.
 
-In future I plan on building some "integration tests", that test everything together, but
-I need some time for that.
+If you'll find something wrong or even buggy just leave me an issue.
 
 ## Where is the documentation? ##
 
-You'll find the complete documentation in the wiki.
+You'll find the documentation in the [docs folder](https://github.com/sateffen/yal/tree/master/docs)
 
 ## License? ##
 
